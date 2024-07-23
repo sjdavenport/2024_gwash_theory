@@ -7,8 +7,6 @@ h2 = 0.2;
 nsims = 1000;
 do_standardize = 0;
 
-saveloc = 'C:\Users\Rebecca\Documents\GitHub\jobs\Gen2';
-
 distbn = 'norm';
 
 methods = {'ar1', 'equi'};
