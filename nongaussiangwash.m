@@ -82,7 +82,7 @@ ld_ratio_std = sqrt(ld_ratio_ss/nsims - ld_ratio.^2);
 
 %%
 for I = 1:5
-    plot(nvec, ld_ratio_std(I,:))
+    plot(nvec, gwash_std(I,:))
     hold on
 end
 legend('3', '5', '10', '20', 'norm')
@@ -107,7 +107,7 @@ ldsc_fixed_std = zeros(length(dfvec), length(nvec));
 ldsc_free_std = zeros(length(dfvec), length(nvec));
 gwash_std = zeros(length(dfvec), length(nvec));
 
-rho = 0.9;
+rho = 0.2;
 
 for I = 1:length(dfvec)
     if isnumeric(dfvec{I})
@@ -136,46 +136,49 @@ gradvalues = fliplr([0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]);
 
 for I = 1:length(dfvec)
     % plot(nvec, gwash_std(I,:), 'Color', gradvalues(I)*[1,1,0] + [0,0,1], 'LineWidth', 4)
-    if I == 1
+    if I == 7
         plot(nvec, gwash_std(I,:), '--', 'Color', [0,0,0], 'LineWidth', 4)
     else
-        plot(nvec, gwash_std(I,:), 'Color', gradvalues(I)*[1,1,0] + [0,0,1], 'LineWidth', 4)
+        plot(nvec, gwash_std(I,:), 'Color', gradvalues(I+1)*[1,1,0] + [0,0,1], 'LineWidth', 4)
     end
     hold on
     BigFont(22)
     xlabel('n')
     ylabel('Standard Deviation')
 end
-% ylim([0,0.07])
-% if rho == 0.2
-%     hLegend = legend('df = 2','df = 2.3', 'df = 2.5', 'df = 2.8', 'df = 3', 'df = 5', 'Normal', 'Location', 'southoutside', 'Orientation', 'Horizontal');
-% end
-title(['\rho = ', num2str(rho)])
+ylim([0,0.18])
+
+title(['h^2 = 0.2, \rho = ', num2str(rho)])
+% hLegend = legend('df = 2','df = 2.3', 'df = 2.5', 'df = 2.8', 'df = 3', 'df = 5', 'Normal', 'Location', 'southoutside', 'Orientation', 'Horizontal');
 % legendPos = get(hLegend, 'Position');
 % % Calculate new position for the legend to be underneath the plot
 % newLegendPos = legendPos;
 % newLegendPos(2) = -1;
+% set(gcf, 'Color', 'white');
 
 matniceplot
 saveim(['varydf_std_rho', num2str(10*rho), '.pdf'])
 
+%%
 clf
 % gradvalues = fliplr([0.4, 0.45,0.5,0.55, 0.6, 0.65, 0.9]);
 for I = 1:length(dfvec)
-    if I == 1
+    if I == 7
         plot(nvec, gwash(I,:), '--', 'Color', [0,0,0], 'LineWidth', 4)
     else
-        plot(nvec, gwash(I,:), 'Color', gradvalues(I)*[1,1,0] + [0,0,1], 'LineWidth', 4)
+        plot(nvec, gwash(I,:), 'Color', gradvalues(I+1)*[1,1,0] + [0,0,1], 'LineWidth', 4)
     end
-    plot(nvec, 0*nvec, '--', 'LineWidth', 2, 'Color', ones(1,3)*0.4)
+    % hold on
+    % plot(nvec, 0*nvec, '--', 'LineWidth', 2, 'Color', ones(1,3)*0.4)
     hold on
     BigFont(22)
     xlabel('n')
     ylabel('Expectation')
 end
 % if rho == 0.9
-%     legend('df = 2','df = 2.3', 'df = 2.5', 'df = 2.8', 'df = 3', 'df = 5', 'Normal', 'Location', 'East')
+%     legend('df = 2','df = 2.3', 'df = 2.5', 'df = 2.8', 'df = 3', 'df = 5', 'Normal', 'Location', 'South')
 % end
-title(['\rho = ', num2str(rho)])
+title(['h^2 = 0.2, \rho = ', num2str(rho)])
 matniceplot
+ylim([-0.05, 0.25])
 saveim(['varydf_bias_rho', num2str(10*rho), '.pdf'])
