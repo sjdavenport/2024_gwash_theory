@@ -8,18 +8,18 @@ end
 corrval = corrval/size(X,2)
 
 %%
-rho = 0.99;
+rho = 0.999;
 X = Xgen( 1000, 2000, rho, 'equi');
 Y = Xgen( 1000, 2000, rho, 'equi');
 
 Z = (X > 0) + (Y>0);
 
-corrval = 0;
+corrval = 0;s
 lag = 1;
 for I = 1:(size(Z,2)-lag)
     corrval = corrval + corr(Z(:,1), Z(:,1+lag));
 end
 corrval = corrval/(size(Z,2) -lag)
 
-std(Z,0,1)/(1/sqrt(2))
-mean(Z,1)
+% std(Z,0,1)/(1/sqrt(2))
+% mean(Z,1)

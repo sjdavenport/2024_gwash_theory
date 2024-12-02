@@ -27,9 +27,10 @@ Sigm_half=out.Sigm$vectors %*% diag(out.Sigm$values^{1/2}) %*% t(out.Sigm$vector
 
 n_sim=10^3
 res_reg_free=rep(NA,n_sim)
-do.scale=FALSE
+do.scale=TRUE
 
-F_ST_=c(0.001,0.01,0.05,0.1,0.2,0.3,0.4,0.5)
+F_ST_=c(0,0.01,0.05,0.1,0.2,0.3,0.4,0.5)
+#F_ST_=c(0)
 n_F_ST=length(F_ST_)
 
 res_m_sim=rep(NA,n_F_ST)
