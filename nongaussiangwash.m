@@ -2,12 +2,15 @@ nvec = 200:200:1000;
 mvec = 2*nvec;
 nref = nvec;
 
-for rho = [0.2, 0.9]
+%for rho = [0.2, 0.9]
+for rho = [0.9]
     % dfvec = {1,2,3,5, 'norm'};
-    dfvec = {2,2.3, 2.5, 2.8, 3,5, 'norm'};
+    % dfvec = {2,2.3, 2.5, 2.8, 3,5, 'norm'};
+    dfvec = {2.5, 2.8, 3,5, 'norm'};
     h2 = 0.2;
     nsims = 10000;
-    for do_standardize = [0,1]
+    % for do_standardize = [0,1]
+    for do_standardize = [1]
         % saveloc = '/Users/sdavenport/Documents/Code/Servers/jobs/Gen2';
 
         for I = 1:length(dfvec)

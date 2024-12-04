@@ -108,15 +108,16 @@ for h2 = [0.2, 0.5]
 
         matniceplot
         % fullscreen
-        BigFont(22)
+        BigFont(23)
         if h2 == 0.2
             legend('LDSC', 'LDSC-W', 'GWASH', 'GWASH-W', 'Location', 'NorthEast')
         end
         ylim([0,0.35])
-        setylim
-        xlabel('n')
-        ylabel('Standard Deviation')
-        title(['h^2 = ', num2str(h2)])
+        % setylim
+        xlabel('$n$', 'Interpreter', 'latex')
+        ylabel('Standard Deviation', 'Interpreter', 'latex')
+        title(['$h^2$ = ', num2str(h2)], 'Interpreter', 'latex')
+        pbaspect([1.3,1,1]);
         if do_std == 1
             saveim(['std_', num2str(10*h2), '.pdf'])
         else
@@ -139,22 +140,27 @@ for h2 = [0.2, 0.5]
         ylim([-0.05, 0.04])
         matniceplot
         % fullscreen
-        BigFont(22)
+        BigFont(23)
         if h2 == 0.2
             % legend('LDSC W1', 'LDSC', 'LDSC W', 'GWASH W1', 'GWASH', 'GWASH W', 'Location', 'SouthEast')
             legend('LDSC', 'LDSC-W', 'GWASH', 'GWASH-W', 'Location', 'SouthEast')
         end
-        xlabel('n')
-        ylabel('Bias')
-        title(['h^2 = ', num2str(h2)])
+        xlabel('$n$', 'Interpreter', 'latex')
+        ylabel('Bias', 'Interpreter', 'latex')
+        title(['$h^2$ = ', num2str(h2)],  'Interpreter', 'latex')
         set(gca, 'position', [0.1728    0.1385    0.7322    0.7830])
         % ytickformat('%.0e')
+        pbaspect([1.3 1 1]);
+        %ax = gca;
+
+        % Adjust the size and position of the axes
+        %ax.Position = [0.2, 0.2, 0.6, 0.6];
+
         if do_std == 1
             saveim(['bias_', num2str(10*h2), '.pdf'])
         else
             saveim(['bias_', num2str(10*h2), '_std_0.pdf'])
         end
-
     end
 end
 % ylim([0,0.2])
